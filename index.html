@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil YouTube</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --yt-black: #0f0f0f;
+        --yt-white: #ffffff;
+        --yt-gray: #aaaaaa;
+        --yt-button: #272727;
+      }
+
+      body {
+        background-color: var(--yt-black);
+        color: var(--yt-white);
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Controles de Navegação (Fixos) */
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        display: flex;
+        gap: 20px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px 25px;
+        border-radius: 50px;
+        border: 1px solid #333;
+      }
+
+      .btn {
+        background: var(--yt-white);
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        opacity: 0.8;
+      }
+      .btn-secondary {
+        background: var(--yt-button);
+        color: white;
+      }
+
+      /* Layout YouTube */
+      .container {
+        width: 100%;
+        max-width: 1284px;
+      }
+
+      /* Banner */
+      .banner-container {
+        width: 100%;
+        aspect-ratio: 16 / 2.6;
+        background: #222;
+        overflow: hidden;
+        border-radius: 12px;
+        margin-top: 15px;
+      }
+
+      #banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s ease-in-out;
+      }
+
+      /* Header Info */
+      .header-info {
+        display: flex;
+        padding: 24px 0;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      .avatar-container {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      #avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s ease-in-out;
+      }
+
+      .text-info h1 {
+        font-size: 36px;
+        margin: 0 0 4px 0;
+      }
+
+      .metadata {
+        color: var(--yt-gray);
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      .bio {
+        color: var(--yt-gray);
+        font-size: 14px;
+        max-width: 600px;
+        line-height: 1.4;
+      }
+
+      /* Abas Fake */
+      .tabs {
+        display: flex;
+        border-bottom: 1px solid #333;
+        margin-top: 20px;
+        gap: 24px;
+      }
+
+      .tab {
+        padding: 10px 0;
+        color: var(--yt-gray);
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .tab.active {
+        color: var(--yt-white);
+        border-bottom: 2px solid var(--yt-white);
+      }
+
+      #counter {
+        color: var(--yt-gray);
+        font-size: 12px;
+        text-align: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="banner-container">
+        <img
+          id="banner-img"
+          src="https://via.placeholder.com/1284x200/222/fff?text=Banner+01"
+          alt="Banner"
+        />
+      </div>
+
+      <div class="header-info">
+        <div class="avatar-container">
+          <img id="avatar-img" src="image_7c9e18.png" alt="Avatar" />
+        </div>
+        <div class="text-info">
+          <h1 id="channel-name">kis unknown</h1>
+          <div class="metadata">
+            <span id="handle">@kisunknownf</span> • 6 mil inscritos • 3 vídeos
+          </div>
+          <div class="bio" id="channel-bio">Seja bem vindo a minha casa :p</div>
+          <button class="btn" style="margin-top: 15px">Inscrever-se</button>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active">Início</div>
+        <div class="tab">Vídeos</div>
+        <div class="tab">Shorts</div>
+        <div class="tab">Playlists</div>
+        <div class="tab">Comunidade</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-secondary" onclick="mudarPerfil(-1)">
+        <i class="fas fa-chevron-left"></i> Anterior
+      </button>
+      <div id="counter">Opção 1 de X</div>
+      <button class="btn" onclick="mudarPerfil(1)">
+        Próximo <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <script>
+      // ADICIONE AQUI AS SUAS FOTOS
+      const perfis = [
+        {
+          avatar:
+            "https://yt3.googleusercontent.com/WJ-lwTkQQNdv_iohM_-leNJV2U2Z3RSdf-_92Lksd8JNY98GKtRk0XlyoP697sUq5GNYvxreLyE=s120-c-k-c0x00ffffff-no-rj", // Sua foto enviada
+          banner:
+            "https://yt3.googleusercontent.com/ubvHe9seh-6UGN2oxI573yjMoSdTVQnkc65eUk2ADmRQ_bjId2SDR6APnx2mjVNCIRYyx0H-uw=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj", // Exemplo banner Makima
+          bio: "Seja bem vindo a minha casa :p",
+        },
+        {
+          avatar:
+            "https://yt3.googleusercontent.com/WJ-lwTkQQNdv_iohM_-leNJV2U2Z3RSdf-_92Lksd8JNY98GKtRk0XlyoP697sUq5GNYvxreLyE=s120-c-k-c0x00ffffff-no-rj", // Sua foto enviada
+          banner:
+            "https://yt3.googleusercontent.com/ubvHe9seh-6UGN2oxI573yjMoSdTVQnkc65eUk2ADmRQ_bjId2SDR6APnx2mjVNCIRYyx0H-uw=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj", // Exemplo banner Makima
+          bio: "Seja bem vindo a minha casa :p",
+        },
+        {
+          avatar:
+            "https://yt3.googleusercontent.com/WJ-lwTkQQNdv_iohM_-leNJV2U2Z3RSdf-_92Lksd8JNY98GKtRk0XlyoP697sUq5GNYvxreLyE=s120-c-k-c0x00ffffff-no-rj", // Sua foto enviada
+          banner:
+            "https://yt3.googleusercontent.com/ubvHe9seh-6UGN2oxI573yjMoSdTVQnkc65eUk2ADmRQ_bjId2SDR6APnx2mjVNCIRYyx0H-uw=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj", // Exemplo banner Makima
+          bio: "Seja bem vindo a minha casa :p",
+        },
+      ];
+
+      let indexAtual = 0;
+
+      function mudarPerfil(direcao) {
+        indexAtual += direcao;
+
+        // Loop infinito entre as fotos
+        if (indexAtual >= perfis.length) indexAtual = 0;
+        if (indexAtual < 0) indexAtual = perfis.length - 1;
+
+        atualizarDOM();
+      }
+
+      function atualizarDOM() {
+        const p = perfis[indexAtual];
+        document.getElementById("avatar-img").src = p.avatar;
+        document.getElementById("banner-img").src = p.banner;
+        document.getElementById("channel-bio").innerText = p.bio;
+        document.getElementById("counter").innerText = `Opção ${
+          indexAtual + 1
+        } de ${perfis.length}`;
+
+        // Efeito de transição suave
+        document.getElementById("avatar-img").style.opacity = 0;
+        document.getElementById("banner-img").style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById("avatar-img").style.opacity = 1;
+          document.getElementById("banner-img").style.opacity = 1;
+        }, 50);
+      }
+
+      // Iniciar
+      atualizarDOM();
+    </script>
+  </body>
+</html>
